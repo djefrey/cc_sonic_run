@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+import sonic
 
 pygame.init()
 
@@ -18,11 +19,17 @@ tree2 = load_img("tree2")
 sunflower = load_img("sunflower")
 totem = load_img("totem")
 
+sonic = sonic.Sonic(load_img("sonic"))
+
+i = 0
+
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
+        if event.type == KEYDOWN:
+            i += 1
 
     window.blit(background, (0,0))
 
@@ -33,6 +40,8 @@ while running:
 
     window.blit(sunflower, (349, 260))
     window.blit(sunflower, (224, 260))
+
+    sonic.drawSonicSprite(i, window)
 
     window.blit(ground, (0, 380))
 
